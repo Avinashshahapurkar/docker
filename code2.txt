@@ -1,0 +1,10 @@
+$postText = '..includes html + image tags';
+ 
+// find first image and redo it
+preg_match_all('/<img[^>]+>/i', $postText, $images);
+$postThumbnail = isset($images[0][0]) ? $images[0][0] : '';
+$postThumbnail = preg_replace('/(width|height|style)="*"/', '', $postThumbnail);
+$postThumbnail = preg_replace('/<img/', '<img class="blog-post-thumbnail"', $postThumbnail);
+ 
+echo $postThumbnail;
+echo $postText;
